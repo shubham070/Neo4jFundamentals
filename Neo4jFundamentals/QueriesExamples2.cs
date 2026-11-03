@@ -1,6 +1,4 @@
-using System.Text.Json;
 using Neo4j.Driver;
-using Neo4j.Driver.Mapping;
 
 public class QueriesExamples2
 {
@@ -53,8 +51,6 @@ public class QueriesExamples2
                 Console.WriteLine(path.End);
                 Console.WriteLine(path.Nodes.Count);
                 Console.WriteLine(path.Relationships.Count);
-
-                       Console.WriteLine("----------- Paths --------");
 
             }
         }
