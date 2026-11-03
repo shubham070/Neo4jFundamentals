@@ -1,0 +1,1 @@
+public sealed record Neo4jConfiguration(string Uri, string Username, string Password);
