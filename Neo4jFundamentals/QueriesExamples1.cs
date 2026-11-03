@@ -1,13 +1,8 @@
-using System.Text.Json;
 using Neo4j.Driver;
 using Neo4j.Driver.Mapping;
 
 public class QueriesExamples1
 {
-
-
-    
-
        public static async Task RunNeo(IDriver driver)
     {
         Console.WriteLine(" ['keys']  and  .AS<> Usage");

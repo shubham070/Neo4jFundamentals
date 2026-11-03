@@ -16,8 +16,11 @@ class Program
         Console.WriteLine("Welcome Running the first Example simple datatype mapping and Object Data Type");
         await QueriesExamples1.RunNeo(driver);
 
-        Console.WriteLine("Welcome Running the first Example");
+        Console.WriteLine("Welcome Running the Second Example");
         await QueriesExamples2.RunNeo(driver);
+
+        Console.WriteLine("Welcome Running the Third Example");
+        await QueriesExamples3.RunNeo(driver);
 
         await driver.DisposeAsync();
         Console.WriteLine("disposed successfully connection closed");
