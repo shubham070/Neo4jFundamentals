@@ -5,14 +5,6 @@ class Program
 {
     public static async Task Main()
     {
-        Console.WriteLine("Hello");
-        await Program.RunNeo();
-    }
-
-    public static async Task RunNeo()
-    {
-        Console.WriteLine("Hello, World!");
-
         var configuration = await JsonSerializer.DeserializeAsync<Neo4jConfiguration>(
             File.OpenRead("appsettings.json"))
             ?? throw new InvalidOperationException("Could not load appsettings.json.");
@@ -21,34 +13,13 @@ class Program
             configuration.Uri,
             AuthTokens.Basic(configuration.Username, configuration.Password));
 
-        await driver.VerifyConnectivityAsync();
-        Console.WriteLine("connection successful");
+        Console.WriteLine("Welcome Running the first Example simple datatype mapping and Object Data Type");
+        await QueriesExamples1.RunNeo(driver);
 
+        Console.WriteLine("Welcome Running the first Example");
+        await QueriesExamples2.RunNeo(driver);
 
-        var cypher = @"
-                    MATCH (p:Person {name: $name})-[r:ACTED_IN]->(m:Movie)
-                    RETURN m.title AS title, r.role AS role
-                    ";
-
-        // execute a query
-        var result = await driver.ExecutableQuery(cypher)
-        .WithParameters(new { name = "Tom Hanks" })
-        // specify target databse using .WithConfig this is optional
-        // also can be configured to readmode because ExecutableQuery runs writemode by default
-        .WithConfig(
-            new QueryConfig(
-                database: "4101dc89",
-                routing: RoutingControl.Readers))
-        //WithMap() operator this is optional
-        .WithMap((record) => $" Tom Hanks Played {record["role"]} in {record["title"]} Movie")
-        // specify target databse using .WithConfig this is optional
-        .ExecuteAsync();
-
-        foreach (var record in result.Result)
-        {
-            Console.WriteLine(record);
-        }
-
+        await driver.DisposeAsync();
         Console.WriteLine("disposed successfully connection closed");
     }
 }
