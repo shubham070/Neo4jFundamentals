@@ -1,0 +1,29 @@
+# Build output
+bin/
+obj/
+
+# Visual Studio and VS Code
+.vs/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/launch.json
+!.vscode/tasks.json
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Test and coverage output
+TestResults/
+coverage/
+
+# Local configuration and secrets
+appsettings.Development.json
+appsettings.Local.json
+secrets.json
+
+# Operating system files
+.DS_Store
+Thumbs.db
